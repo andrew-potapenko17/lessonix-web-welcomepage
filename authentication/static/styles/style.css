@@ -1,0 +1,262 @@
+body {
+  margin: 0;
+  background-color: rgba(127, 199, 130, 1);
+  background: linear-gradient(135deg, rgba(0, 255, 42, 0) 0%, rgba(36, 239, 67, 0.23) 20%, rgba(63, 227, 86, 0.4) 90%, rgba(127, 199, 130, 0.8) 100%);
+  animation: gradient-animation 10s ease-in-out infinite alternate;
+  background-size: 400% 400%;
+  background-repeat: no-repeat;
+  transition: background 0s ease;
+  overflow-x: hidden;
+}
+
+.firstpage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-start; /* Align items at the top */
+}
+
+.secondpage {
+  display: flex;
+  flex-direction: column; /* Ensure vertical stacking */
+  align-items: center; /* Center items horizontally */
+  justify-content: flex-start; /* Align items at the top */
+}
+
+
+.secondpage .functions-section {
+  margin-top: 30px; /* Add spacing below the about section if needed */
+  text-align: center;
+}
+
+.functions-section {
+  width: 100%;
+}
+
+.functions-title {
+    font-family: 'Itim';
+    font-size: 60px;
+    margin-bottom: 80px;
+    color: #ffffff;
+}
+
+.function-flow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  gap: 20px;
+  width: 100%; /* Ensure it spans the full width of the container */
+  max-width: 1200px; /* Optional: Limit the width for better layout control */
+  margin: 0 auto; /* Center the flow within its container */
+}
+
+.function-item {
+  position: relative;
+  width: 60%; /* Adjust the width to control size */
+  max-width: 400px; /* Optional: Limit the maximum width */
+  padding: 20px;
+  background-color: #ffffff;
+  border: 2px solid #4caf50;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.function-item.left {
+  align-self: flex-start; /* Aligns to the left within the parent */
+}
+
+.function-item.right {
+  align-self: flex-end; /* Aligns to the right within the parent */
+}
+
+.function-content h2 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.function-content p {
+  font-size: 1em;
+  color: #666;
+  line-height: 1.5;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  height: 90vh;
+  margin-right: auto;
+  margin-left: 70px;
+}
+
+.proceed {
+  align-self: center; /* Center the button horizontally */
+  margin-bottom: 0px; /* Add spacing from the bottom of the container */
+}
+
+.scroll-background {
+  background: rgba(127, 199, 130, 0.8);
+}
+
+.scroll-placeholder {
+  height: 200vh;
+}
+
+.about-section {
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0;
+  display: block;
+  margin-left: 70px;
+  transition: opacity 0.5s ease;
+}
+
+.about-section,
+.about-title,
+.about-text {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.about-section.animate,
+.about-title.animate,
+.about-text.animate {
+    opacity: 1;
+    animation: fadeInUp 1s forwards;
+}
+
+.about-title {
+  font-size: 60px;
+  font-family: 'Itim';
+  color: #ffffff;
+  margin-right: 60px;
+}
+
+.about-text {
+  font-size: 30px;
+  color: #ffffff;
+  font-family: 'UNCAGE-SB';
+  margin-right: 70px; /* Align with container's left margin */
+}
+
+.button {
+  font-size: 20px;
+  padding: 10px 30px;
+  color: #000000;
+  background-color: #eef6f3;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  width: 200px;
+  font-family: 'UNCAGE-SB';
+  text-align: center;
+  transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, font-size 0.5s ease;
+  position: relative;
+  margin: 20px auto; /* Center the button horizontally */
+}
+
+/* Button appearance in default state */
+.scroll-background .button,
+.shrink .button {
+  font-size: 15px; /* Shrink the font size */
+  width: 150px; /* Reduce the button width */
+  transform: translate(-180px, -80px); /* Move to match .logo position */
+  opacity: 0.5; /* Dim the button slightly */
+}
+
+/* Button hover effect remains consistent */
+.button:hover::before {
+  opacity: 1;
+  animation: gradientLoop 10s linear infinite;
+}
+
+/* Ensure consistent animation across states */
+.scroll-background .button {
+  transition: font-size 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+}
+
+.shrink .button {
+  font-size: 15px;
+  transform: translate(-180px, -80px); /* Align with .logo */
+  visibility: visible; /* Ensure it's still interactable */
+  opacity: 1; /* Make it fully visible */
+}
+
+/* Hide the button initially in shrink and scroll-background states */
+.scroll-background .button,
+.shrink .button {
+  visibility: hidden; /* Avoid interaction */
+  opacity: 0; /* Fully hide the button */
+}
+
+.button::before{
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #ffffff, #000000, #ffffff, #000000);
+  background-size: 300%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button:hover::before{
+  opacity: 1;
+  animation: gradientLoop 10s linear infinite;
+}
+
+@keyframes gradientLoop {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+.thirdpage {
+  text-align: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.switch {
+  font-size: 17px;
+  padding: 10px 10px;
+  color: #000000;
+  background-color: #eef6f3;
+  border: 1px solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  width: 250px;
+  text-align: center;
+  margin-left: 0;
+}
+
+.submit {
+  margin-top: 50px;
+  font-size: 17px;
+  padding: 20px 25px;
+  color: #000000;
+  background-color: #eef6f3;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  width: 270px;
+  text-align: center;
+  margin-left: 0;
+}

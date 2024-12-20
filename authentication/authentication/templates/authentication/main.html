@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessonix</title>
+    <link rel="stylesheet" type="text/css" href="fonts.css" />
+    <link rel="stylesheet" type="text/css" href="firstpage.css"/>
+    <link rel="stylesheet" type="text/css" href="secondpage.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="form.css" />
+</head>
+<body>
+    <div class="firstpage">
+        <div class="container">
+            <div class="upper">
+                <div class="logo">
+                    <a href="javascript:void(0)" onclick="location.reload();" class="a-main">
+                        <img src="tab_ico.png" alt="Logo" class="logo-img">
+                    </a>                    
+                </div>
+                <h1 class="title">Lessonix</h1>
+                <p class="subtitle">Школа в одному застосунку</p>
+            </div>
+            <div class="proceed">
+                <a href="#" class="button">Увійти →</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="loginForm">
+        <div class="form-container">
+            <h2 class="main-heading">Увійдіть в акаунт</h2>
+
+            <div class="images-container">
+                <a href="facebook-auth" class="auth-through">
+                    <img src="facebook-login.png" alt="Facebook" class="small-image">
+                </a>
+                <a href="google-auth" class="auth-through">
+                    <img src="google-login.png" alt="Google" class="small-image">
+                </a>
+                <a href="x-auth" class="auth-through">
+                    <img src="x-login.png" alt="X" class="small-image">
+                </a>
+            </div>
+
+            <p>Або через e-mail:</p>
+
+            <form method="POST" action="{% url 'login' %}">
+                <div class="input-group">
+                    <img src="email-ico.png" alt="Email Icon" class="input-icon">
+                    <input type="email" name="email" placeholder="E-mail" required />
+                </div>
+    
+                <div class="input-group">
+                    <img src="password-ico.png" alt="Password Icon" class="input-icon">
+                    <input type="password" name="password" placeholder="Пароль" required />
+                </div>
+    
+                <input type="submit" value="Увійти" class="submit" />
+            </form>
+        </div>
+    </div>
+    
+    <div class="secondpage">
+        <div class="about-section" id="about-section">
+            <h1 class="about-title">Про Lessonix</h1>
+            <p class="about-text">Lessonix — це сучасний застосунок для управління шкільними заняттями та розкладом, надаючи зручний інструмент для вчителів, учнів і адміністрації. З його допомогою школа може оптимізувати робочий процес і забезпечити прозорість для всіх учасників.</p>
+        </div>
+    </div>
+    
+    <div class="thirdpage">
+        <div class="functions-section">
+            <h1 class="functions-title">Основні можливості Lessonix</h1>
+            <div class="function-flow">
+                <div class="function-item left">
+                    <div class="function-content">
+                        <h2>Звіти</h2>
+                        <p>Детальні звіти, які охоплюють окремі уроки, щоденні підсумки, або аналіз даних за місяць. Система дозволяє швидко створювати звіти для вчителів, адміністрації або батьків. Усе це доступно в інтерактивній та зрозумілій формі.</p>
+                    </div>
+                </div>
+                <div class="function-item right">
+                    <div class="function-content">
+                        <h2>Розклад</h2>
+                        <p>Інтуїтивний інструмент для створення розкладу, що забезпечує автоматизацію та враховує потреби як учнів, так і вчителів. Ви можете легко змінювати, синхронізувати та ділитися розкладом у реальному часі.</p>
+                    </div>
+                </div>
+                <div class="function-item left">
+                    <div class="function-content">
+                        <h2>Онлайн система</h2>
+                        <p>Lessonix працює через захищений сервер, що гарантує швидкий доступ до даних. Ця система підтримує інтеграцію з іншими інструментами та забезпечує роботу в режимі реального часу для всіх учасників освітнього процесу.</p>
+                    </div>
+                </div>
+                <div class="function-item right">
+                    <div class="function-content">
+                        <h2>Уроки</h2>
+                        <p>Платформа дозволяє створювати інтерактивні уроки, які адаптуються до розкладу або налаштовуються під конкретні цілі. Учні можуть отримати доступ до матеріалів уроку та брати участь у ньому навіть дистанційно.</p>
+                    </div>
+                </div>
+                <div class="function-item left">
+                    <div class="function-content">
+                        <h2>Зв'язок з медпунктом</h2>
+                        <p>Lessonix забезпечує швидкий і надійний спосіб зв'язатися з медичним персоналом школи. Викладачі можуть миттєво повідомити про стан здоров’я учня, а медпункт зможе фіксувати записи, створювати звіти та реагувати на будь-які проблеми.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fourthpage">
+        <div class="admin-panel">
+            <h1 class="admin-title">Lessonix Admin</h1>
+            <p class="admin-about" >Консоль адміністратора школи</p>
+        </div>
+        
+        <div class="advances">
+            <div class="advance">
+                <h1 class="advnace-title">
+                    Q1: Як Lessonix Admin допомагає в обліку відвідуваності?
+                </h1>
+                <p class="advance-body"> 
+                    Lessonix Admin дозволяє адміністраторам і викладачам легко вести облік відвідуваності, завдяки синхронізації даних з Firebase, а також генерувати та завантажувати QR-коди для швидкої реєстрації студентів.
+                </p>
+            </div>
+            <div class="advance">
+                <h1 class="advnace-title">
+                    Q2: Які функції Lessonix Admin підтримують контроль за здоров’ям студентів?
+                </h1>
+                <p class="advance-body"> 
+                    Медичний персонал може фіксувати інформацію про стан здоров’я студентів, отримувати сповіщення про відсутність і формувати звіти для аналізу, що сприяє своєчасному реагуванню на проблеми.
+                </p>
+            </div>
+            <div class="advance">
+                <h1 class="advnace-title">
+                    Q3: Як Lessonix Admin допомагає адміністраторам управляти користувачами?
+                </h1>
+                <p class="advance-body"> 
+                    Адміністратори мають змогу керувати ролями користувачів, налаштовувати доступ до різних функцій та надсилати сповіщення про відсутність студентів або важливі події.
+                </p>
+            </div>
+        </div>
+
+        <div class="admin-button-container">
+            <a href="/admin-panel" class="admin-button">До консолі →</a>
+        </div>
+    </div>
+
+    <div class="fifthpage">
+        <div class="join-now-section">
+            <h1 class="join-title">Приєднуйтесь вже зараз!</h1>
+            <a href="#" class="join-button">Подати заявку на вступ школи →</a>
+        </div>
+    </div>
+
+    <div class="white-square">
+        <p class="welcome-title" id="welcome-title">Вітаємо знову!</p>
+        <p class="welcome-subtitle">Введіть дані облікового запису</p>
+        <a href="#" class="switch">Я тут вперше</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

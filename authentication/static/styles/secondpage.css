@@ -1,0 +1,136 @@
+.fourthpage {
+    align-items: center;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.admin-title, .about-title {
+    font-family: 'Itim';
+    font-size: 60px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.about-section {
+    margin-bottom: 150px;
+}
+
+.admin-about {
+    font-size: 25px;
+    margin-top: -5px;
+    color: #ffffff;
+}
+
+.admin-button-container {
+    padding: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.admin-button {
+    font-size: 20px;
+    padding: 10px 30px;
+    color: #000000;
+    background-color: #eef6f3;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    margin: 20px auto;
+}
+
+.admin-button:hover {
+    transform: scale(1.05);
+}
+
+
+.advances {
+    margin-top: 50px;
+    margin-bottom: 70px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 20px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.advance {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: calc((100% - 100px - 40px) / 3);
+    min-width: 300px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.advance:hover {
+    transform: scale(1.05);
+}
+
+.advnace-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.advance-body {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+    .advances {
+        flex-wrap: wrap;
+        padding: 0 20px;
+    }
+    .advance {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+
+.join-now-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align content to the left */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Align text to the left */
+    width: 60%; /* Restrict content to the first 40% of the page */
+    height: 100vh;
+    padding-left: 5%; /* Add padding to provide spacing from the left edge */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.join-title {
+    font-family: 'UNCAGE-SB';
+    font-size: 60px;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.join-button {
+    font-size: 20px;
+    padding: 20px 25px;
+    color: #000000;
+    background-color: #eef6f3;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    width: 310px;
+    text-align: center;
+    margin-left: 0; /* Align the button with the text */
+}

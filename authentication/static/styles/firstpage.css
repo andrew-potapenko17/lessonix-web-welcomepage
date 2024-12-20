@@ -1,0 +1,227 @@
+/* Default styles for logo and title */
+.upper, 
+.proceed {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInUp 1s forwards 0.5s;
+}
+.logo {
+  z-index: 10; /* Ensure it's on top */
+  position: relative; /* Establish a positioning context */
+}
+
+.logo img {
+  margin-top: 50px;
+  height: 250px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.5s;
+  transition: transform 0.5s ease, height 0.5s ease;
+}
+
+.title {
+  margin-top: -60px;
+  font-family: 'Itim';
+  font-size: 100px;
+  color: #000000;
+  opacity: 0;
+  animation: fadeIn 1s forwards 0.5s;
+  transition: transform 0.5s ease, font-size 0.5s ease, margin 0.5s ease;
+}
+
+.subtitle {
+  font-size: 27px;
+  margin-top: -50px;
+  margin-bottom: 20px;
+  color: #000000;
+  font-family: 'UNCAGE-SB';
+  opacity: 1; /* Start fully visible */
+  transition: opacity 1s ease; /* 1-second fade-out effect */
+}
+
+/* Shrink effect for logo and title on 'Proceed' button click */
+
+.shrink .logo img {
+  height: 100px; /* 50% of 250px */
+  transform: translate(-180px, -80px); /* Move to the top-left corner */
+}
+
+.shrink .logo .a-link {
+  transform: translate(-180px, -80px); /* Move to the top-left corner */
+}
+
+.shrink .upper,
+.register .upper {
+  z-index: 100;
+}
+
+.shrink .title {
+  font-size: 40px; /* 50% of original size */
+  margin-top: -30px;
+  transform: translate(-180px, -80px); /* Move to the top-left corner */
+}
+
+/* Styles for scrolled background state */
+.scroll-background .logo img {
+  top: 10px;
+  left: 10px;
+  height: 80px;
+  transform: none;
+}
+
+.scroll-background .title {
+  position: static;
+  top: 10px;
+  left: 100px;
+  font-size: 30px;
+  transform: none;
+}
+
+/* Hide subtitle and button on scroll and when shrink is active */
+.scroll-background .subtitle,
+.scroll-background .proceed,
+.scroll-background .button,
+.shrink .subtitle,
+.shrink .proceed {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+.loginForm {
+  visibility: hidden; /* Initially hidden */
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 0; /* Align to the left by default */
+  height: 100%;
+  width: 65%; /* 65% of the page width */
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+  transform: translate(-100%, -50%); /* Fully off-screen horizontally, centered vertically */
+}
+
+/* Show the login form when the 'shrink' class is applied */
+.shrink .loginForm {
+  visibility: visible;
+  display: flex; /* Use flex for alignment */
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  pointer-events: auto; /* Allow interaction */
+  transform: translate(0, -50%); /* Slide into view while staying vertically centered */
+}
+
+/* Align to the right when the 'register' class is applied */
+.register .loginForm {
+  visibility: visible; /* Make visible when in .register state */
+  display: flex; /* Use flex for alignment */
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  pointer-events: auto;
+  left: auto; /* Remove left alignment */
+  transform: translate(54%, -50%); /* Slide to the right while staying vertically centered */
+}
+
+/* Styling for the heading inside the login form */
+.main-heading {
+  font-size: 50px;
+  font-family: 'UNCAGE-SB';
+  color: #000000;
+  font-weight: 600;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Display main heading when .shrink is active */
+.shrink .main-heading {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* White square container */
+.white-square {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 35%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(100%);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+/* Slide the white square into view when .shrink class is active */
+.shrink .white-square {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+  transition: transform 0.7s, opacity 1s, top 1s, left 0.7s; /* Added top and left transitions */
+}
+
+.register .white-square {
+  transform: translateX(-186%); /* Move to the left */
+}
+/* Text styles inside the white square */
+.welcome-title {
+  font-size: 50px;
+  font-family: 'UNCAGE-SB';
+  color: #000000;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.welcome-subtitle {
+  font-size: 30px;
+  font-family: 'UNCAGE-SB';
+  color: #000000;
+  font-weight: 600;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Disable scrolling when .shrink is active */
+.shrink {
+  overflow: hidden;
+}
+
+.images-container {
+  width: 30%; /* Width of the images container */
+  display: flex; /* Arrange images in a row */
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center; /* Center all the images in the container */
+  text-align: center; /* Ensure the images align properly if there's text */
+}
+
+.small-image {
+  width: 50px; /* Set the width of each image */
+  height: auto; /* Maintain the aspect ratio */
+  margin: 0 10px; /* Equal margin between the images */
+  vertical-align: middle; /* Remove extra space at the top of the images */
+}
+
+.images-container .small-image:nth-child(1) {
+  margin-right: auto; /* Push the first image to the left */
+}
+
+.images-container .small-image:nth-child(3) {
+  margin-left: auto; /* Push the third image to the right */
+}
+.upper {
+  height: 100%;
+}
+.shrink .upper {
+  height: 10%;
+}
+
