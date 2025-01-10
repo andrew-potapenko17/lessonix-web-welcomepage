@@ -86,6 +86,7 @@ def register(request):
                 "school_id": school_id,
                 "email": email,
                 "role": role,
+                "lvl": 1,
                 "schoolStatus": 'nolesson',
             })
 
