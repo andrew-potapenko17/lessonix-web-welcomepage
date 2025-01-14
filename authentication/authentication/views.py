@@ -4,6 +4,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 import pyrebase
 import jwt
+import bcrypt
 from datetime import datetime, timezone, timedelta
 from . import cfg
 
@@ -13,6 +14,25 @@ db = firebase.database()
 
 def main(request):
     return render(request, 'welcome.html')
+
+def get_user_id_by_email(email):
+    try:
+        users_ref = db.reference('users')
+        users = users_ref.get()
+
+        if not users:
+            return None  # No users found
+
+        # Iterate through users to find the matching email
+        for user_id, user_data in users.items():
+            if user_data.get('email') == email:
+                return user_id  # Return user ID when email matches
+
+        return None  # Email not found
+
+    except Exception as e:
+        print(f"Error fetching user ID by email: {e}")
+        return None
 
 @csrf_exempt
 def login(request):
@@ -25,8 +45,12 @@ def login(request):
             if not email or not password:
                 return JsonResponse({'error': 'Email and password are required'}, status=400)
 
-            # Authenticate user with Firebase
-            user = auth.sign_in_with_email_and_password(email, password)
+            user_id = get_user_id_by_email(email)
+
+            hashedPassword = db.child("users").child(user_id).get("password")
+
+            if not bcrypt.checkpw(password.encode('utf-8'), hashedPassword.encode('utf-8')):
+                return JsonResponse({'error': 'Invalid email or password'}, status=401)
 
             # Generate JWT token
             payload = {
@@ -76,6 +100,8 @@ def register(request):
             full_name = register_code_data.get('full_name')
             school_id = register_code_data.get('school_id')
             role = register_code_data.get('role')
+
+            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
                 
             # Register new user
             user = auth.create_user_with_email_and_password(email, password)
@@ -85,6 +111,7 @@ def register(request):
                 "full_name": full_name,
                 "school_id": school_id,
                 "email": email,
+                "password": hashed_password,
                 "role": role,
                 "lvl": 1,
                 "schoolStatus": 'nolesson',

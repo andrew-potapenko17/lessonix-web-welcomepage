@@ -38,7 +38,7 @@
                 <a href="facebook-auth" class="auth-through">
                     <img src="{% static 'img/facebook-login.png' %}" alt="Facebook" class="small-image">
                 </a>
-                <a href="google-auth" class="auth-through">
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="auth-through">
                     <img src="{% static 'img/google-login.png' %}" alt="Google" class="small-image">
                 </a>
                 <a href="x-auth" class="auth-through">
