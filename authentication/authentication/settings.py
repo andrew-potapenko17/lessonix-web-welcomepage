@@ -79,7 +79,7 @@ TEMPLATES = [
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY='483686680811-4v4lg8m6ldc5s8gorrsgsjltf8ao3be6.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://localhost:8000/complete/google-oauth2/'
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'complete/google-oauth2/'
 
 WSGI_APPLICATION = 'authentication.wsgi.application'
 

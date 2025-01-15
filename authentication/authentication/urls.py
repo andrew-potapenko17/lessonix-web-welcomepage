@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.main, name="main"),
     path('login/', views.login, name="login"),
     path('register/', views.register, name="register"),
-    path('social-auth/', include('social_django.urls', namespace='social')),
+    path('social-auth/', include('social_django.urls', namespace='social')),  # Handles the OAuth2 flow
+    path('complete/google-oauth2/', views.google_auth_success, name="google_auth_success"),
     path('admin/', admin.site.urls),
 ]
