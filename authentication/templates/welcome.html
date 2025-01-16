@@ -38,7 +38,7 @@
                 <a href="facebook-auth" class="auth-through">
                     <img src="{% static 'img/facebook-login.png' %}" alt="Facebook" class="small-image">
                 </a>
-                <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}" class="auth-through">
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'google_auth_success' %}" class="auth-through">
                     <img src="{% static 'img/google-login.png' %}" alt="Google" class="small-image">
                 </a>
                 <a href="x-auth" class="auth-through">
@@ -166,6 +166,7 @@
         const staticURL = "{% static '' %}";
         const loginAction = "{% url 'login' %}";
         const registerAction = "{% url 'register' %}";
+        const googleAuthUrl = "{% url 'social:begin' 'google-oauth2' %}?next={% url 'google_auth_success' %}";
     </script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>

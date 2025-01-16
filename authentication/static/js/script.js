@@ -68,7 +68,7 @@ document.querySelector('.white-square .switch').addEventListener('click', functi
                 <a href="facebook-auth" class="auth-through">
                     <img src="${staticURL}img/facebook-login.png" alt="Facebook" class="small-image">
                 </a>
-                <a href="google-auth" class="auth-through">
+                <a href="${googleAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/google-login.png" alt="Google" class="small-image">
                 </a>
                 <a href="x-auth" class="auth-through">
@@ -107,7 +107,7 @@ document.querySelector('.white-square .switch').addEventListener('click', functi
                 <a href="facebook-auth" class="auth-through">
                     <img src="${staticURL}img/facebook-login.png" alt="Facebook" class="small-image">
                 </a>
-                <a href="google-auth" class="auth-through">
+                <a href="${googleAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/google-login.png" alt="Google" class="small-image">
                 </a>
                 <a href="x-auth" class="auth-through">
