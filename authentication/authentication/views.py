@@ -19,14 +19,16 @@ def main(request):
 
 def get_user_id_by_email(email):
     try:
-        users_ref = db.reference('users')
+        users_ref = db.child('users')
         users = users_ref.get()
 
         if not users:
             return None  # No users found
 
         # Iterate through users to find the matching email
-        for user_id, user_data in users.items():
+        for user in users.each():
+            user_id = user.key()
+            user_data = user.val()
             if user_data.get('email') == email:
                 return user_id  # Return user ID when email matches
 
@@ -102,7 +104,7 @@ def register(request):
             role = register_code_data.get('role')
 
             # Check if email already exists in the database
-            existing_user = auth.get_user_by_email(email)
+            existing_user = get_user_id_by_email(email)
             if existing_user:
                 return JsonResponse({'error': 'Email is already registered'}, status=400)
 
@@ -191,7 +193,7 @@ def google_auth_success(request):
 
             # Redirect to the microservice with the JWT token
             redirect_url = f"https://lessonixapp.pythonanywhere.com/authenticate?token={token}"
-            return redirect(redirect_url)
+            return HttpResponseRedirect(redirect_url)
 
         except Exception as e:
             return JsonResponse({'error': f'Error checking user in database. {str(e)}'}, status=500)
