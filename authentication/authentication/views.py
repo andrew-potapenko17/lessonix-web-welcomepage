@@ -203,3 +203,61 @@ def google_auth_success(request):
     except Exception as e:
         return JsonResponse({'error': f'Unexpected error: {str(e)}'}, status=500)
 
+
+def facebook_auth_success(request):
+        try:
+            # Get the authenticated user's details
+            social_user = UserSocialAuth.objects.get(provider='facebook', user=request.user)
+            facebook_data = social_user.extra_data
+            access_token = facebook_data.get('access_token')
+            
+            if not access_token:
+                return JsonResponse({'error': 'Unable to retrieve access token from Facebook'}, status=400)
+
+            # Fetch the email using the access token
+            email = get_facebook_email(access_token)
+            if not email:
+                return JsonResponse({'error': 'Unable to retrieve email from Facebook'}, status=400)
+
+            # Check if the email exists in Firebase database
+            try:
+                user_id = get_user_id_by_email(email)
+                user_data = db.child("users").child(user_id).get().val()
+
+                if not user_data:
+                    return JsonResponse({'error': 'No user found with this email'}, status=401)
+
+                # Generate JWT token
+                payload = {
+                    "email": email,
+                    "exp": datetime.now(timezone.utc) + timedelta(hours=1),  # Token expires in 1 hour
+                    "iat": datetime.now(timezone.utc),  # Issued at time
+                }
+                token = jwt.encode(payload, cfg.JWT_SECRET, algorithm=cfg.JWT_ALGORITHM)
+
+                # Redirect to the microservice with the JWT token
+                redirect_url = f"https://lessonixapp.pythonanywhere.com/authenticate?token={token}"
+                return HttpResponseRedirect(redirect_url)
+
+            except Exception as e:
+                return JsonResponse({'error': f'Error checking user in database. {str(e)}'}, status=500)
+
+        except UserSocialAuth.DoesNotExist:
+            return JsonResponse({'error': 'Facebook account not linked to any user'}, status=400)
+        except Exception as e:
+            return JsonResponse({'error': f'Unexpected error: {str(e)}'}, status=500)
+
+def get_facebook_email(access_token):
+        url = "https://graph.facebook.com/me?fields=email"
+        headers = {
+            "Authorization": f"Bearer {access_token}"
+        }
+        response = requests.get(url, headers=headers)
+        
+        if response.status_code == 200:
+            user_info = response.json()
+            return user_info.get('email')
+        return None    
+
+def twitter_auth_success(request):
+    pass
