@@ -10,6 +10,8 @@ import bcrypt
 from datetime import datetime, timezone, timedelta
 from . import cfg
 
+from requests_oauthlib import OAuth1
+
 firebase = pyrebase.initialize_app(cfg.cfg)
 auth = firebase.auth()
 db = firebase.database()
@@ -260,4 +262,46 @@ def get_facebook_email(access_token):
         return None    
 
 def twitter_auth_success(request):
-    pass
+    try:
+        # Get the authenticated user's details from the UserSocialAuth table
+        social_user = UserSocialAuth.objects.get(provider='twitter', user=request.user)
+        twitter_data = social_user.extra_data
+
+        # Retrieve the email from the extra_data (from the Twitter OAuth response)
+        email = twitter_data.get('email')
+
+        if not email:
+            return JsonResponse({'error': 'Unable to retrieve email from Twitter'}, status=400)
+
+        # Check if the email exists in Firebase database
+        try:
+            # Assuming you have a function that maps email to user_id in Firebase
+            user_id = get_user_id_by_email(email)
+            user_data = db.child("users").child(user_id).get().val()
+
+            if not user_data:
+                return JsonResponse({'error': 'No user found with this email'}, status=401)
+
+            # Generate JWT token for the user
+            payload = {
+                "email": email,
+                "exp": datetime.now(timezone.utc) + timedelta(hours=1),  # Token expires in 1 hour
+                "iat": datetime.now(timezone.utc),  # Issued at time
+            }
+            token = jwt.encode(payload, cfg.JWT_SECRET, algorithm=cfg.JWT_ALGORITHM)
+
+            # Redirect to the microservice with the JWT token
+            redirect_url = f"https://lessonixapp.pythonanywhere.com/authenticate?token={token}"
+            return HttpResponseRedirect(redirect_url)
+
+        except Exception as e:
+            # Handle errors when checking the user in the Firebase database
+            return JsonResponse({'error': f'Error checking user in database. {str(e)}'}, status=500)
+
+    except UserSocialAuth.DoesNotExist:
+        # Handle the case where the Twitter account is not linked to any user
+        return JsonResponse({'error': 'Twitter account not linked to any user'}, status=400)
+
+    except Exception as e:
+        # Handle any other unexpected errors
+        return JsonResponse({'error': f'Unexpected error: {str(e)}'}, status=500)
