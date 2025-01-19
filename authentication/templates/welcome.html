@@ -35,7 +35,7 @@
             <h2 class="main-heading">Увійдіть в акаунт</h2>
 
             <div class="images-container">
-                <a href="{% url 'social:begin' 'facebook' %}?next={% url 'facebook_auth_success' %}?next={% url 'facebook_auth_success' %}" class="auth-through">
+                <a href="{% url 'social:begin' 'facebook' %}?next={% url 'facebook_auth_success' %}" class="auth-through">
                     <img src="{% static 'img/facebook-login.png' %}" alt="Facebook" class="small-image">
                 </a>
                 <a href="{% url 'social:begin' 'google-oauth2' %}?next={% url 'google_auth_success' %}" class="auth-through">
@@ -167,6 +167,8 @@
         const loginAction = "{% url 'login' %}";
         const registerAction = "{% url 'register' %}";
         const googleAuthUrl = "{% url 'social:begin' 'google-oauth2' %}?next={% url 'google_auth_success' %}";
+        const facebookAuthUrl = "{% url 'social:begin' 'facebook' %}?next={% url 'facebook_auth_success' %}";
+        const twitterAuthUrl = "{% url 'social:begin' 'twitter' %}?next={% url 'twitter_auth_success' %}";
     </script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>

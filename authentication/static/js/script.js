@@ -65,13 +65,13 @@ document.querySelector('.white-square .switch').addEventListener('click', functi
         formContainer.innerHTML = `
             <h2 class="main-heading">Зареєструйтеся до Lessonix</h2>
             <div class="images-container">
-                <a href="facebook-auth" class="auth-through">
+                <a href="${facebookAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/facebook-login.png" alt="Facebook" class="small-image">
                 </a>
                 <a href="${googleAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/google-login.png" alt="Google" class="small-image">
                 </a>
-                <a href="x-auth" class="auth-through">
+                <a href="${twitterAuthUrl }" class="auth-through">
                     <img src="${staticURL}img/x-login.png" alt="X" class="small-image">
                 </a>
             </div>
@@ -104,13 +104,13 @@ document.querySelector('.white-square .switch').addEventListener('click', functi
         formContainer.innerHTML = `
             <h2 class="main-heading">Увійдіть в акаунт</h2>
             <div class="images-container">
-                <a href="facebook-auth" class="auth-through">
+                <a href="${facebookAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/facebook-login.png" alt="Facebook" class="small-image">
                 </a>
                 <a href="${googleAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/google-login.png" alt="Google" class="small-image">
                 </a>
-                <a href="x-auth" class="auth-through">
+                <a href="${twitterAuthUrl}" class="auth-through">
                     <img src="${staticURL}img/x-login.png" alt="X" class="small-image">
                 </a>
             </div>
