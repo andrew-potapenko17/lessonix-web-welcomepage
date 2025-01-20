@@ -15,17 +15,15 @@ window.addEventListener(
         const aboutTitle = document.querySelector('.about-title');
         const aboutText = document.querySelector('.about-text');
 
-        // Toggle background class
         if (scrollY > 150) {
             body.classList.add('scroll-background');
         } else {
             body.classList.remove('scroll-background');
         }
 
-        // Show and animate about section
         if (scrollY >= 210) {
             aboutSection.style.display = 'block';
-            aboutSection.style.opacity = '1'; // Fully visible
+            aboutSection.style.opacity = '1';
 
             // Apply animations only once
             if (!aboutTitle.classList.contains('animate')) {
@@ -34,11 +32,11 @@ window.addEventListener(
             }
         } else {
             aboutSection.style.display = 'block';
-            aboutSection.style.opacity = '0.5'; // Partially visible
+            aboutSection.style.opacity = '0.5'; 
             aboutTitle.classList.remove('animate');
             aboutText.classList.remove('animate');
         }
-    }, 100) // Wait time of 100 ms
+    }, 100) 
 );
 
 const welcomeTitle = document.querySelector('.welcome-title');
@@ -46,7 +44,7 @@ const welcomeSubtitle = document.querySelector('.welcome-subtitle');
 const toRegister = document.querySelector('.switch');
 
 document.querySelector('.proceed .button').addEventListener('click', function () {
-    document.body.classList.add('shrink'); // Apply the class to body or a wrapper element
+    document.body.classList.add('shrink');
 });
 
 let isRegistering = false;
@@ -57,11 +55,9 @@ document.querySelector('.white-square .switch').addEventListener('click', functi
     const welcomeSubtitle = document.querySelector('.welcome-subtitle');
     const toRegister = document.querySelector('.switch');
 
-    // Toggle between login and registration states
     const isRegistering = document.body.classList.toggle('register');
 
     if (isRegistering) {
-        // Switch to registration form
         formContainer.innerHTML = `
             <h2 class="main-heading">Зареєструйтеся до Lessonix</h2>
             <div class="images-container">
@@ -100,7 +96,6 @@ document.querySelector('.white-square .switch').addEventListener('click', functi
         welcomeSubtitle.textContent = 'Створіть новий обліковий запис';
         toRegister.textContent = 'Вже є обліковий запис?';
     } else {
-        // Switch back to login form
         formContainer.innerHTML = `
             <h2 class="main-heading">Увійдіть в акаунт</h2>
             <div class="images-container">
