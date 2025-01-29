@@ -8,5 +8,7 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('social-auth/', include('social_django.urls', namespace='social')),  # Handles the OAuth2 flow
     path('complete/google-oauth2/', views.google_auth_success, name="google_auth_success"),
+    path('complete/facebook/', views.facebook_auth_success, name="facebook_auth_success"),
+    path('complete/twitter/', views.twitter_auth_success, name="twitter_auth_success"),
     path('admin/', admin.site.urls),
 ]
