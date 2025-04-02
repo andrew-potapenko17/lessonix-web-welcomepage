@@ -10,5 +10,6 @@ urlpatterns = [
     path('complete/google-oauth2/', views.google_auth_success, name="google_auth_success"),
     path('complete/facebook/', views.facebook_auth_success, name="facebook_auth_success"),
     path('complete/twitter/', views.twitter_auth_success, name="twitter_auth_success"),
+    path('privacypolicy/student', views.privacypolicy, name='privacypolicy'),
     path('admin/', admin.site.urls),
 ]

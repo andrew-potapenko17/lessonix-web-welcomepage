@@ -19,6 +19,9 @@ db = firebase.database()
 def main(request):
     return render(request, 'welcome.html')
 
+def privacypolicy(request):
+    return render(request, 'privacypolicy.html')
+
 def get_user_id_by_email(email):
     try:
         users_ref = db.child('users')
