@@ -38,7 +38,7 @@ def login(request):
             token = jwt.encode(payload, cfg.JWT_SECRET, algorithm=cfg.JWT_ALGORITHM)
 
             # Redirect to the microservice with the JWT token
-            redirect_url = f"https://lessonixapp.pythonanywhere.com/authenticate?token={token}"
+            redirect_url = f"https://web-lessonixapp.onrender.com/authenticate?token={token}"
             return HttpResponseRedirect(redirect_url)
 
         except Exception as e:
